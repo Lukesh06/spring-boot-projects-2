@@ -1,11 +1,19 @@
 package com.example.user.model;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 public class UserRequestModel {
 
+	@NotBlank(message = "First Name should not be blank")
 	private String firstName;
 	
+	@NotNull(message = "Last Name should not be blank")
 	private String lastName;
 	
+	@Email(message = "Please provide valid emaol address")
 	private String emailId;
 	
 	private String addressLine;
@@ -14,6 +22,7 @@ public class UserRequestModel {
 	
 	private String state;
 	
+	@Pattern(regexp = "^\\d{10}$", message = "Please provide valid phone number")
 	private String mobileNumber;
 
 	public String getFirstName() {
