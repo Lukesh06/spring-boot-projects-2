@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "9c6c6cfd-7232-4082-b607-36667272be26",
+		"name": "Spring-boot-2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get- Method demo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/10/Vishal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"10",
+						"Vishal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post-Method demo",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<UserResponseModel>\r\n    <firstName>Gaurav</firstName>\r\n    <lastName>Sharma</lastName>\r\n    <emailId>gaurav.sharma@gmail.com</emailId>\r\n    <addressLine>Sadar Bajar Road</addressLine>\r\n    <city>Jabalpur</city>\r\n    <state>Madhya Pradesh</state>\r\n    <mobileNumber>9854254785</mobileNumber>\r\n</UserResponseModel>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post-Method demo multiple",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\r\n\t\"firstName\": \"Gaurav\",\r\n\t\"lastName\": \"Sharma\",\r\n\t\"emailId\": \"gaurav.sharma@gmail.com\",\r\n\t\"addressLine\": \"Sadar Bajar Road\",\r\n\t\"city\": \"Jabalpur\",\r\n\t\"state\": \"Madhya Pradesh\",\r\n\t\"mobileNumber\": \"9854254785\"\r\n}, {\r\n\t\"firstName\": \"Rahul\",\r\n\t\"lastName\": \"Meshram\",\r\n\t\"emailId\": \"rahul.meshram@gmail.com\",\r\n\t\"addressLine\": \"New Market\",\r\n\t\"city\": \"Bhopal\",\r\n\t\"state\": \"Madhya Pradesh\",\r\n\t\"mobileNumber\": \"9854214526\"\r\n}]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/multiple",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"multiple"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put-Method demo",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete-Method demo",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
