@@ -13,7 +13,7 @@ public class UserRequestModel {
 	@NotNull(message = "Last Name should not be blank")
 	private String lastName;
 	
-	@Email(message = "Please provide valid emaol address")
+	@Email(message = "Please provide valid email address")
 	private String emailId;
 	
 	private String addressLine;

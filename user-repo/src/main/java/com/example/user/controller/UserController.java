@@ -3,41 +3,44 @@ package com.example.user.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.user.exception.InvalidRequestException;
 import com.example.user.model.ErrorResponseModel;
 import com.example.user.model.UserRequestModel;
 import com.example.user.model.UserResponseModel;
+import com.example.user.service.UserService;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
+	@Autowired
+	UserService modifiedUserServiceImpl;
+	
+	@Autowired
+	UserService userServiceImpl;
+	
 	@PostMapping(produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }, consumes = {
 			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity<UserResponseModel> createUser(@Valid @RequestBody UserRequestModel userRequestModel) {
-		
-		//
-		String test = null;
-		int length = test.length();
-		
-		
-		UserResponseModel userResponseModel = populateResponse(userRequestModel);
+		UserResponseModel userResponseModel = modifiedUserServiceImpl.populateResponse(userRequestModel);
 		ResponseEntity<UserResponseModel> response = new ResponseEntity<>(userResponseModel, HttpStatus.CREATED);
 		return response;
 	}
@@ -49,19 +52,19 @@ public class UserController {
 
 		List<UserResponseModel> listUserResponseModel = new ArrayList<>();
 		for (UserRequestModel userRequestModel : listUserRequestModel) {
-			UserResponseModel userResponseModel = populateResponse(userRequestModel);
+			UserResponseModel userResponseModel = userServiceImpl.populateResponse(userRequestModel);
 			listUserResponseModel.add(userResponseModel);
 		}
 		return listUserResponseModel;
 	}
 
-	private UserResponseModel populateResponse(UserRequestModel userRequestModel) {
-		UserResponseModel userResponseModel = new UserResponseModel();
-		BeanUtils.copyProperties(userRequestModel, userResponseModel);
-		String empId = UUID.randomUUID().toString();
-		userResponseModel.setEmpId(empId);
-		return userResponseModel;
+	
+	@GetMapping
+	public String testMethod() {
+		throw new InvalidRequestException("This request is invalid");
 	}
+	
+	
 
 	/*@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
@@ -91,14 +94,4 @@ public class UserController {
 		return errorResponseModel;
 	}
 	
-	@ExceptionHandler(Exception.class)
-	public String handleException(Exception ex) {
-		return ex.getMessage();
-	}
-	
-	@ExceptionHandler(NullPointerException.class)
-	public String handleNullPointerException(NullPointerException ex) {
-		return ex.getMessage();
-	}
-
 }
