@@ -4,9 +4,9 @@ import java.util.UUID;
 
 public class EmpIdGeneratorUtility {
 
-	public String getEmpId() {
-		String empId = UUID.randomUUID().toString();
-		return empId;
+	public String getUserReferenceNumber() {
+		String userReferenceNumber = UUID.randomUUID().toString();
+		return userReferenceNumber;
 	}
 	
 }

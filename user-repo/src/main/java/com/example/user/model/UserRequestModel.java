@@ -24,6 +24,9 @@ public class UserRequestModel {
 	
 	@Pattern(regexp = "^\\d{10}$", message = "Please provide valid phone number")
 	private String mobileNumber;
+	
+	@Pattern(regexp = "^\\d{6}$", message = "Please provide valid pin code number")
+	private String pinCode;
 
 	public String getFirstName() {
 		return firstName;
@@ -79,6 +82,14 @@ public class UserRequestModel {
 
 	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
+	}
+
+	public String getPinCode() {
+		return pinCode;
+	}
+
+	public void setPinCode(String pinCode) {
+		this.pinCode = pinCode;
 	}
 	
 	

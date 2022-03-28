@@ -7,7 +7,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +39,7 @@ public class UserController {
 	@PostMapping(produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }, consumes = {
 			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity<UserResponseModel> createUser(@Valid @RequestBody UserRequestModel userRequestModel) {
-		UserResponseModel userResponseModel = modifiedUserServiceImpl.populateResponse(userRequestModel);
+		UserResponseModel userResponseModel = modifiedUserServiceImpl.saveUserDetails(userRequestModel);
 		ResponseEntity<UserResponseModel> response = new ResponseEntity<>(userResponseModel, HttpStatus.CREATED);
 		return response;
 	}
@@ -52,7 +51,7 @@ public class UserController {
 
 		List<UserResponseModel> listUserResponseModel = new ArrayList<>();
 		for (UserRequestModel userRequestModel : listUserRequestModel) {
-			UserResponseModel userResponseModel = userServiceImpl.populateResponse(userRequestModel);
+			UserResponseModel userResponseModel = userServiceImpl.saveUserDetails(userRequestModel);
 			listUserResponseModel.add(userResponseModel);
 		}
 		return listUserResponseModel;

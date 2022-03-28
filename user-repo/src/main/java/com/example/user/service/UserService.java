@@ -6,4 +6,6 @@ import com.example.user.model.UserResponseModel;
 public interface UserService {
 	
 	 UserResponseModel populateResponse(UserRequestModel userRequestModel);
+	 
+	 UserResponseModel saveUserDetails(UserRequestModel userRequestModel);
 }

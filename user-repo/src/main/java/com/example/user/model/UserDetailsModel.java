@@ -1,25 +1,46 @@
 package com.example.user.model;
 
-public class UserResponseModel {
+import java.util.Date;
 
+public class UserDetailsModel {
+
+	private Integer userId;
+	
 	private String userReferenceNumber;
-	
+
 	private String firstName;
-	
+
 	private String lastName;
-	
+
 	private String emailId;
-	
+
 	private String addressLine;
-	
+
 	private String city;
-	
+
 	private String state;
-	
+
 	private String pinCode;
-	
+
 	private String mobileNumber;
 	
+	private Date createdDate;
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public String getUserReferenceNumber() {
+		return userReferenceNumber;
+	}
+
+	public void setUserReferenceNumber(String userReferenceNumber) {
+		this.userReferenceNumber = userReferenceNumber;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -69,6 +90,14 @@ public class UserResponseModel {
 		this.state = state;
 	}
 
+	public String getPinCode() {
+		return pinCode;
+	}
+
+	public void setPinCode(String pinCode) {
+		this.pinCode = pinCode;
+	}
+
 	public String getMobileNumber() {
 		return mobileNumber;
 	}
@@ -77,20 +106,14 @@ public class UserResponseModel {
 		this.mobileNumber = mobileNumber;
 	}
 
-	public String getUserReferenceNumber() {
-		return userReferenceNumber;
+	public Date getCreatedDate() {
+		return createdDate;
 	}
 
-	public void setUserReferenceNumber(String userReferenceNumber) {
-		this.userReferenceNumber = userReferenceNumber;
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
 
-	public String getPinCode() {
-		return pinCode;
-	}
 
-	public void setPinCode(String pinCode) {
-		this.pinCode = pinCode;
-	}
 	
 }
