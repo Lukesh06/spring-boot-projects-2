@@ -11,16 +11,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/users/10/Vishal",
+					"raw": "http://localhost:8080/users",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"users",
-						"10",
-						"Vishal"
+						"users"
 					]
 				}
 			},
@@ -49,7 +47,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "<UserResponseModel>\r\n    <firstName>Gaurav</firstName>\r\n    <lastName>Sharma</lastName>\r\n    <emailId>gaurav.sharma@gmail.com</emailId>\r\n    <addressLine>Sadar Bajar Road</addressLine>\r\n    <city>Jabalpur</city>\r\n    <state>Madhya Pradesh</state>\r\n    <mobileNumber>9854254785</mobileNumber>\r\n</UserResponseModel>",
+					"raw": "<UserResponseModel>\r\n    <firstName>Gaurav</firstName>\r\n    <lastName>Sharma</lastName>\r\n    <emailId>gaurav.sharma@gmail.com</emailId>\r\n    <addressLine>Sadar Bajar Road</addressLine>\r\n    <city>Jabalpur</city>\r\n    <state>Madhya Pradesh</state>\r\n    <mobileNumber>1234567890</mobileNumber>\r\n</UserResponseModel>",
 					"options": {
 						"raw": {
 							"language": "xml"
@@ -77,13 +75,13 @@
 				"header": [
 					{
 						"key": "Accept",
-						"value": "application/xml",
+						"value": "application/json",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "[{\r\n\t\"firstName\": \"Gaurav\",\r\n\t\"lastName\": \"Sharma\",\r\n\t\"emailId\": \"gaurav.sharma@gmail.com\",\r\n\t\"addressLine\": \"Sadar Bajar Road\",\r\n\t\"city\": \"Jabalpur\",\r\n\t\"state\": \"Madhya Pradesh\",\r\n\t\"mobileNumber\": \"9854254785\"\r\n}, {\r\n\t\"firstName\": \"Rahul\",\r\n\t\"lastName\": \"Meshram\",\r\n\t\"emailId\": \"rahul.meshram@gmail.com\",\r\n\t\"addressLine\": \"New Market\",\r\n\t\"city\": \"Bhopal\",\r\n\t\"state\": \"Madhya Pradesh\",\r\n\t\"mobileNumber\": \"9854214526\"\r\n}]",
+					"raw": "[{\r\n\t\"firstName\": \"Ashish\",\r\n\t\"lastName\": \"Kumar\",\r\n\t\"emailId\": \"ashish.kumar@gmail.com\",\r\n\t\"addressLine\": \"Hoshangabad Road\",\r\n\t\"city\": \"Bhopal\",\r\n\t\"state\": \"Madhya Pradesh\",\r\n\t\"mobileNumber\": \"9874854125\",\r\n    \"pinCode\":\"484001\"\r\n}, {\r\n\t\"firstName\": \"Rahul\",\r\n\t\"lastName\": \"Meshram\",\r\n\t\"emailId\": \"rahul.meshram@gmail.com\",\r\n\t\"addressLine\": \"New Market\",\r\n\t\"city\": \"Bhopal\",\r\n\t\"state\": \"Madhya Pradesh\",\r\n\t\"mobileNumber\": \"9854214526\",\r\n    \"pinCode\":\"484002\"\r\n}]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -138,6 +136,66 @@
 					"port": "8080",
 					"path": [
 						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get-AllUsers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get-User By User Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get-User By first Name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/firstName/Rahul",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"firstName",
+						"Rahul"
 					]
 				}
 			},
