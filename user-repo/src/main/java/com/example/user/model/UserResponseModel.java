@@ -2,6 +2,8 @@ package com.example.user.model;
 
 public class UserResponseModel {
 
+	private Integer userId;
+	
 	private String userReferenceNumber;
 	
 	private String firstName;
@@ -91,6 +93,14 @@ public class UserResponseModel {
 
 	public void setPinCode(String pinCode) {
 		this.pinCode = pinCode;
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 	
 }

@@ -1,6 +1,8 @@
 package com.example.user.service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.TimeZone;
 
 import org.springframework.beans.BeanUtils;
@@ -34,16 +36,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserResponseModel saveUserDetails(UserRequestModel userRequestModel) {
 
-		UserDetailsModel userDetailsModel = new UserDetailsModel();
-
-		BeanUtils.copyProperties(userRequestModel, userDetailsModel);
-
-		String userReferenceNumber = empIdGeneratorUtility.getUserReferenceNumber();
-		userDetailsModel.setUserReferenceNumber(userReferenceNumber);
-		
-		TimeZone timeZone = TimeZone.getTimeZone("IST");
-		final Calendar calendar = Calendar.getInstance(timeZone);
-		userDetailsModel.setCreatedDate(calendar.getTime());
+		UserDetailsModel userDetailsModel = populateUserModelFromRequest(userRequestModel);
 
 		userDetailsModel = UserDetailsDao.saveUserDetails(userDetailsModel);
 
@@ -53,4 +46,84 @@ public class UserServiceImpl implements UserService {
 		return userResponseModel;
 	}
 
+	@Override
+	public List<UserResponseModel> saveUserDetails(List<UserRequestModel> listUserRequestModel) {
+
+		List<UserDetailsModel> listUserDetailsModel = new ArrayList<>();
+
+		List<UserResponseModel> listUserResponseModel = new ArrayList<>();
+
+		for (UserRequestModel userRequestModel : listUserRequestModel) {
+			UserDetailsModel userDetailsModel = populateUserModelFromRequest(userRequestModel);
+			listUserDetailsModel.add(userDetailsModel);
+		}
+
+		listUserDetailsModel = UserDetailsDao.saveUserDetails(listUserDetailsModel);
+
+		for (UserDetailsModel userDetailsModel : listUserDetailsModel) {
+			UserResponseModel userResponseModel = new UserResponseModel();
+			BeanUtils.copyProperties(userDetailsModel, userResponseModel);
+			listUserResponseModel.add(userResponseModel);
+		}
+
+		return listUserResponseModel;
+	}
+
+	public UserDetailsModel populateUserModelFromRequest(UserRequestModel userRequestModel) {
+		UserDetailsModel userDetailsModel = new UserDetailsModel();
+
+		BeanUtils.copyProperties(userRequestModel, userDetailsModel);
+
+		String userReferenceNumber = empIdGeneratorUtility.getUserReferenceNumber();
+		userDetailsModel.setUserReferenceNumber(userReferenceNumber);
+
+		TimeZone timeZone = TimeZone.getTimeZone("IST");
+		final Calendar calendar = Calendar.getInstance(timeZone);
+		userDetailsModel.setCreatedDate(calendar.getTime());
+		return userDetailsModel;
+	}
+
+	@Override
+	public List<UserResponseModel> getAllUsers() {
+
+		List<UserResponseModel> listUserResponseModel = new ArrayList<>();
+
+		List<UserDetailsModel> listUserDetailsModel = UserDetailsDao.getAllUsers();
+
+		for (UserDetailsModel userDetailsModel : listUserDetailsModel) {
+			UserResponseModel userResponseModel = new UserResponseModel();
+			BeanUtils.copyProperties(userDetailsModel, userResponseModel);
+			listUserResponseModel.add(userResponseModel);
+		}
+
+		return listUserResponseModel;
+	}
+
+	@Override
+	public UserResponseModel getUserByUserId(Integer userId) {
+
+		UserDetailsModel userDetailsModel = UserDetailsDao.getUserByUserId(userId);
+
+		UserResponseModel userResponseModel = new UserResponseModel();
+		BeanUtils.copyProperties(userDetailsModel, userResponseModel);
+
+		return userResponseModel;
+	}
+
+	@Override
+	public List<UserResponseModel> getUserByFirstName(String firstName) {
+
+		List<UserResponseModel> listUserResponseModel = new ArrayList<>();
+
+		List<UserDetailsModel> listUserDetailsModel = UserDetailsDao.getUserByFirstName(firstName);
+
+		for (UserDetailsModel userDetailsModel : listUserDetailsModel) {
+			UserResponseModel userResponseModel = new UserResponseModel();
+			BeanUtils.copyProperties(userDetailsModel, userResponseModel);
+			listUserResponseModel.add(userResponseModel);
+		}
+
+		return listUserResponseModel;
+
+	}
 }
