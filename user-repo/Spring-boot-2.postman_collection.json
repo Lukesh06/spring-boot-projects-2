@@ -47,7 +47,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "<UserResponseModel>\r\n    <firstName>Gaurav</firstName>\r\n    <lastName>Sharma</lastName>\r\n    <emailId>gaurav.sharma@gmail.com</emailId>\r\n    <addressLine>Sadar Bajar Road</addressLine>\r\n    <city>Jabalpur</city>\r\n    <state>Madhya Pradesh</state>\r\n    <mobileNumber>1234567890</mobileNumber>\r\n</UserResponseModel>",
+					"raw": "<UserResponseModel>\r\n    <firstName>Gaurav</firstName>\r\n    <lastName>Sharma</lastName>\r\n    <emailId>gaurav.sharma@gmail.com</emailId>\r\n    <addressLine>Sadar Bajar Road</addressLine>\r\n    <city>Jabalpur</city>\r\n    <state>Madhya Pradesh</state>\r\n    <pinCode>484001</pinCode>\r\n    <mobileNumber>1234567890</mobileNumber>\r\n</UserResponseModel>",
 					"options": {
 						"raw": {
 							"language": "xml"
@@ -166,7 +166,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/users/2",
+					"raw": "http://localhost:8080/users/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -174,7 +174,7 @@
 					"port": "8080",
 					"path": [
 						"users",
-						"2"
+						"1"
 					]
 				}
 			},
