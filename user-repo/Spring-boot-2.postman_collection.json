@@ -47,7 +47,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "<UserResponseModel>\r\n    <firstName>Gaurav</firstName>\r\n    <lastName>Sharma</lastName>\r\n    <emailId>gaurav.sharma@gmail.com</emailId>\r\n    <addressLine>Sadar Bajar Road</addressLine>\r\n    <city>Jabalpur</city>\r\n    <state>Madhya Pradesh</state>\r\n    <pinCode>484001</pinCode>\r\n    <mobileNumber>1234567890</mobileNumber>\r\n</UserResponseModel>",
+					"raw": "<UserResponseModel>\r\n    <firstName>Gaurav</firstName>\r\n    <lastName>Shrivastava</lastName>\r\n    <emailId>gaurav.shrivastava@gmail.com</emailId>\r\n    <addressLine>Ward No 15</addressLine>\r\n    <city>Balaghat</city>\r\n    <state>Madhya Pradesh</state>\r\n    <pinCode>481001</pinCode>\r\n    <mobileNumber>9854567890</mobileNumber>\r\n</UserResponseModel>",
 					"options": {
 						"raw": {
 							"language": "xml"
@@ -63,6 +63,51 @@
 					"port": "8080",
 					"path": [
 						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put-update User",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<UserResponseModel>\r\n    <mobileNumber>9858967890</mobileNumber>\r\n</UserResponseModel>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"1"
 					]
 				}
 			},
@@ -186,7 +231,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/users/firstName/Rahul",
+					"raw": "http://localhost:8080/users/firstName/Gaurav",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -195,7 +240,71 @@
 					"path": [
 						"users",
 						"firstName",
-						"Rahul"
+						"Gaurav"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get-User By first Name And City",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/firstNameAndCity?firstName=Gaurav&city=Sagar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"firstNameAndCity"
+					],
+					"query": [
+						{
+							"key": "firstName",
+							"value": "Gaurav"
+						},
+						{
+							"key": "city",
+							"value": "Sagar"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get-User By first Name Last Name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/firstNameAndLastName?firstName=gaurav&lastName=sharma&operation=And",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"firstNameAndLastName"
+					],
+					"query": [
+						{
+							"key": "firstName",
+							"value": "gaurav"
+						},
+						{
+							"key": "lastName",
+							"value": "sharma"
+						},
+						{
+							"key": "operation",
+							"value": "And"
+						}
 					]
 				}
 			},
