@@ -126,4 +126,48 @@ public class UserServiceImpl implements UserService {
 		return listUserResponseModel;
 
 	}
+	
+	@Override
+	public List<UserResponseModel> getUserByFirstNameAndCity(String firstName, String city) {
+
+		List<UserResponseModel> listUserResponseModel = new ArrayList<>();
+
+		List<UserDetailsModel> listUserDetailsModel = UserDetailsDao.getUserByFirstNameAndCity(firstName, city);
+
+		for (UserDetailsModel userDetailsModel : listUserDetailsModel) {
+			UserResponseModel userResponseModel = new UserResponseModel();
+			BeanUtils.copyProperties(userDetailsModel, userResponseModel);
+			listUserResponseModel.add(userResponseModel);
+		}
+
+		return listUserResponseModel;
+
+	}
+
+	@Override
+	public List<UserResponseModel> findByFirstNameLastName(String firstName, String lastName, String operation) {
+		List<UserResponseModel> listUserResponseModel = new ArrayList<>();
+		List<UserDetailsModel> listUserDetailsModel = new ArrayList<>();
+		if(operation.equalsIgnoreCase("OR")) {
+			listUserDetailsModel =  UserDetailsDao.findByFirstNameOrLastName(firstName, lastName);
+		}
+		else if(operation.equalsIgnoreCase("AND")) {
+			listUserDetailsModel =  UserDetailsDao.findByFirstNameAndLastName(firstName, lastName);
+		}
+		for (UserDetailsModel userDetailsModel : listUserDetailsModel) {
+			UserResponseModel userResponseModel = new UserResponseModel();
+			BeanUtils.copyProperties(userDetailsModel, userResponseModel);
+			listUserResponseModel.add(userResponseModel);
+		}
+
+		return listUserResponseModel;
+
+	
+	}
+
+	@Override
+	public void updateMobileNumberForUserId(int userId, String mobileNumber) {
+		UserDetailsDao.updateMobileNumberForUserId(userId, mobileNumber);
+		
+	}
 }

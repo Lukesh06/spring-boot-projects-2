@@ -94,7 +94,8 @@ public class UserDetailsDaoImpl implements UserDetailsDao {
 
 		List<UserDetailsModel> listUserDetailsModel = new ArrayList<>();
 
-		List<UserDetailsEntity> listUserDetailsEntity = (List<UserDetailsEntity>) userDetailsRepository.findByFirstName(firstName);
+		List<UserDetailsEntity> listUserDetailsEntity = (List<UserDetailsEntity>) userDetailsRepository
+				.findByFirstNameOrderByCity(firstName);
 
 		for (UserDetailsEntity userDetailsEntity : listUserDetailsEntity) {
 			UserDetailsModel userDetailsModel = new UserDetailsModel();
@@ -103,6 +104,65 @@ public class UserDetailsDaoImpl implements UserDetailsDao {
 		}
 
 		return listUserDetailsModel;
+	}
+
+	@Override
+	public List<UserDetailsModel> getUserByFirstNameAndCity(String firstName, String city) {
+
+		List<UserDetailsModel> listUserDetailsModel = new ArrayList<>();
+
+		List<UserDetailsEntity> listUserDetailsEntity = (List<UserDetailsEntity>) userDetailsRepository
+				.findByFirstNameAndCity(firstName, city);
+
+		for (UserDetailsEntity userDetailsEntity : listUserDetailsEntity) {
+			UserDetailsModel userDetailsModel = new UserDetailsModel();
+			BeanUtils.copyProperties(userDetailsEntity, userDetailsModel);
+			listUserDetailsModel.add(userDetailsModel);
+		}
+
+		return listUserDetailsModel;
+	}
+
+	@Override
+	public List<UserDetailsModel> findByFirstNameOrLastName(String firstName, String lastName) {
+
+		List<UserDetailsModel> listUserDetailsModel = new ArrayList<>();
+
+		List<UserDetailsEntity> listUserDetailsEntity = (List<UserDetailsEntity>) userDetailsRepository
+				.findByFirstNameOrLastName(firstName, lastName);
+
+		for (UserDetailsEntity userDetailsEntity : listUserDetailsEntity) {
+			UserDetailsModel userDetailsModel = new UserDetailsModel();
+			BeanUtils.copyProperties(userDetailsEntity, userDetailsModel);
+			listUserDetailsModel.add(userDetailsModel);
+		}
+
+		return listUserDetailsModel;
+
+	}
+
+	@Override
+	public List<UserDetailsModel> findByFirstNameAndLastName(String firstName, String lastName) {
+
+		List<UserDetailsModel> listUserDetailsModel = new ArrayList<>();
+
+		List<UserDetailsEntity> listUserDetailsEntity = (List<UserDetailsEntity>) userDetailsRepository
+				.findByFirstNameAndLastNameAllIgnoreCase(firstName, lastName);
+
+		for (UserDetailsEntity userDetailsEntity : listUserDetailsEntity) {
+			UserDetailsModel userDetailsModel = new UserDetailsModel();
+			BeanUtils.copyProperties(userDetailsEntity, userDetailsModel);
+			listUserDetailsModel.add(userDetailsModel);
+		}
+
+		return listUserDetailsModel;
+
+	}
+
+	@Override
+	public void updateMobileNumberForUserId(int userId, String mobileNumber) {
+		
+		userDetailsRepository.updateMobileNumberForUserId(userId, mobileNumber);
 	}
 
 }

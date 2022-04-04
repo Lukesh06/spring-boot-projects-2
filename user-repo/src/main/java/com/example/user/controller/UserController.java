@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.user.exception.InvalidRequestException;
 import com.example.user.model.ErrorResponseModel;
 import com.example.user.model.UserRequestModel;
 import com.example.user.model.UserResponseModel;
@@ -92,11 +93,32 @@ public class UserController {
 		ResponseEntity<UserResponseModel> response = new ResponseEntity<>(userResponseModel, HttpStatus.CREATED);
 		return response;
 	}
-	
+
 	@GetMapping("/firstName/{firstName}")
 	public List<UserResponseModel> getUserByFirstName(@PathVariable String firstName) {
 		return modifiedUserServiceImpl.getUserByFirstName(firstName);
-		
+
 	}
 
+	@GetMapping("/firstNameAndCity")
+	public List<UserResponseModel> getUserByFirstNameAndCity(@RequestParam(required = true) String firstName,
+			@RequestParam(required = true) String city) {
+		return modifiedUserServiceImpl.getUserByFirstNameAndCity(firstName, city);
+
+	}
+	
+	@GetMapping("/firstNameAndLastName")
+	public List<UserResponseModel> getUserByFirstNameAndCity(@RequestParam(required = true) String firstName,
+			@RequestParam(required = true) String lastName, @RequestParam(required = true) String operation) {
+		return modifiedUserServiceImpl.findByFirstNameLastName(firstName, lastName, operation);
+
+	}
+
+	@PutMapping(value= "/{userId}",produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }, consumes = {
+			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+	public ResponseEntity<String> updateUser(@RequestBody UserRequestModel userRequestModel, @PathVariable Integer userId) {
+		modifiedUserServiceImpl.updateMobileNumberForUserId(userId, userRequestModel.getMobileNumber());
+		ResponseEntity<String> response = new ResponseEntity<>("User Updated Successfully", HttpStatus.CREATED);
+		return response;
+	} 
 }
